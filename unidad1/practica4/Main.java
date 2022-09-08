@@ -33,7 +33,7 @@ public class Main {
             System.out.print("Calificacion 3: ");
             c2 = consola.nextInt();
 
-            Estudiante estudiante = new Estudiante(m, n, c, c1, c);
+            Estudiante estudiante = new Estudiante(m, n, c, c1, c2);
             estudiantes.add(estudiante);
             i++;
         }
