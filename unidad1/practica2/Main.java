@@ -1,3 +1,8 @@
+/**
+ *
+ * @author xztrece
+ */
+
 package unidad1.practica2;
 
 import java.util.Scanner;

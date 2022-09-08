@@ -1,4 +1,9 @@
-package practica4;
+/**
+ *
+ * @author xztrece
+ */
+
+package unidad1.practica4;
 
 public class Estudiante {
     private int matricula;
