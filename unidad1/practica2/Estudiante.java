@@ -70,14 +70,6 @@ public class Estudiante {
         this.c3 = c3;
     }
 
-    public double getProm() {
-        return prom;
-    }
-
-    public void setProm(double prom) {
-        this.prom = prom;
-    }
-
     @Override
     public String toString() {
         return "Estudiante { "+this.id+" [N control = "+this.matricula + " Nombre: "+this.nombre+" Calificacion 1 = "+this.c1

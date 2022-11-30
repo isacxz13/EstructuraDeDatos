@@ -1,0 +1,179 @@
+package unidad3.practica4;
+
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
+/**
+ *
+ * @author xztrece
+ */
+public class Reproductor {
+
+    //Iniciacion de variables de la clase
+    private static final Reproduccion lista = new ListaReproduccion();
+    private static Cancion newCancion;
+    private static final Scanner consola = new Scanner(System.in);
+    private static int option2;
+    private static int indice;
+    private static String nombre;
+    private static String genero;
+    private static double tiempo;
+
+    public static void main(String[] args) {
+        try (consola) {
+            Cancion cancio1 = new Cancion(5.42, "Adelante", "Pop");
+            Cancion cancio2 = new Cancion(5.43, "Adentro", "Mariachi");
+            Cancion cancio3 = new Cancion(5.44, "Afuera", "Sierrenio");
+            Cancion cancio4 = new Cancion(5.45, "Atras", "Banda");
+
+            lista.agregar(cancio4);
+            lista.agregar(cancio3);
+            lista.agregar(cancio2);
+            lista.agregar(cancio1);
+            int option;
+            do {
+                System.out.print("""
+                                          Menu        
+                                 
+                                 1.-Reproductor
+                                 2.-Lista de reproduccion
+                                 3.-Salir
+                                     Opcion >> """);
+                option = consola.nextInt();
+                switch (option) {
+                    case 1 ->
+                        reproductor();
+                    case 2 ->
+                        listaReproductor();
+                    case 3 ->
+                        System.out.println("Saliendo");
+                    default ->
+                        System.out.println("La opcion indicada no fue encontrada");
+                }
+            } while (option != 3);
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada de datos incorrectos");
+        }catch(NoSuchElementException e){
+            System.out.println("La lista está vacía");
+        }catch(NullPointerException e){
+            System.out.println("Colección especificada es nula");
+        }catch(IndexOutOfBoundsException e){
+            System.out.println("índice está fuera de rango ( índice < 0 || índice >= tamaño() )");
+        }
+    }
+
+    protected static void reproductor() {
+        do{
+            System.out.println("       \n\n\nReproductor");
+            System.out.print("""
+
+                             1.-Reproducir lista lineal
+                             2.-Reproduccion lista aleatoria
+                             3.-Reproducir cancion
+                             4.-Regresar
+                                 Opcion >> """);
+            option2 = consola.nextInt();
+            switch (option2) {
+                case 1 -> {
+                    if (lista.estado()) {
+                        System.out.println("No hay canciones que reproducir");
+                    } else {
+                        lista.reproducirLineal();
+                    }
+                }
+                case 2 -> {
+                    if (lista.estado()) {
+                        System.out.println("No hay canciones que reproducir");
+                    } else {
+                        lista.reproducirAleatoria();
+                    }
+                }
+                case 3 -> {
+                    if (lista.estado()) {
+                        System.out.println("No hay canciones en la lista");
+                    } else {
+                        System.out.print("Nombre cancion >> ");
+                        nombre = consola.next();
+                        indice = lista.where(nombre);
+                        if(indice >= 0){
+                            lista.buscar(indice);
+                        }else{
+                            System.out.println("La cancion no se encuentra en la lista");
+                        }
+                    }
+                }
+                case 4 -> {
+                }
+                default ->
+                    System.out.println("La opcion indicada no fue encontrada");
+            }
+        }while(option2 != 4);
+    }
+    
+    protected static void listaReproductor() {
+        do {
+            System.out.println("      \n\n\n       Lista de reproduccion\n");
+            System.out.print("""
+                             1.-Agregar nueva cancion
+                             2.-Eliminar cancion
+                             3.-Eliminar toda la lista
+                             4.-Revisar numero de canciones
+                             5.-Ver lista
+                             6.-Regresar
+                             
+                                 Opcion >> """);
+            option2 = consola.nextInt();
+            switch (option2) {
+                case 1 -> {
+                    System.out.print("Nombre >> ");
+                    nombre = consola.next();
+                    System.out.print("Tiempo reproduccion >> ");
+                    tiempo = consola.nextDouble();
+                    System.out.print("Genero >> ");
+                    genero = consola.next();
+                    newCancion = new Cancion(tiempo, nombre, genero);
+                    if (lista.agregar(newCancion)) {
+                        System.out.println("Cancion Agregada con exito [" + newCancion.getNombre() + "] ");
+                    } else {
+                        System.out.println("No se pudo agregar la cancion");
+                    }
+                }
+                case 2 -> {
+                    System.out.print("Indice >> ");
+                    indice = consola.nextInt();
+                    if (lista.estado()) {
+                        System.out.println("No hay canciones para eliminar");
+                    } else {
+                        if (indice > lista.contar() || indice < 0) {
+                            System.out.println("El indice marcado no existe");
+                        } else {
+                            System.out.println("Cancion eliminada [ " + lista.eliminar(indice) + " ]");
+                        }
+                    }
+                }
+                case 3 -> {
+                    if (lista.estado()) {
+                        System.out.println("No hay canciones para eliminar");
+                    } else {
+                        lista.eliminarAll();
+                        if (lista.estado()) {
+                            System.out.println("TODAS las canciones eliminadas con exito");
+                        } else {
+                            System.out.println("No se eliminaron las canciones");
+                        }
+                    }
+                }
+                case 4 -> System.out.println("Cantidad de canciones {" + lista.contar() + "]");
+                case 5 -> {
+                    if (lista.estado()) {
+                        System.out.println("No hay canciones que reproducir");
+                    } else {
+                        lista.verLista();
+                    }
+                }
+                default -> System.out.println("La opcion indicada no fue encontrada");
+            }
+        } while (option2 != 6);
+    }
+}

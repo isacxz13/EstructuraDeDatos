@@ -2,7 +2,6 @@
  *
  * @author xztrece
  */
-
 package unidad1.practica3;
 
 import java.util.Scanner;
@@ -10,14 +9,14 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int i = 1;
+        int i = 0;
         int x = 1;
         Scanner consola = new Scanner(System.in);
         Estudiante[] array = new Estudiante[10];
         int c1,c2,c;
         int m;
         String n;
-        while(i <= x){
+        while(i < x){
             System.out.println("------------------------------------------------------------");
             System.out.print("Numero de control: ");
             m = consola.nextInt();
@@ -34,11 +33,11 @@ public class Main {
             array[i] = estudiante;
             i ++;   
         }
-        i = 1;
+        i = 0;
         //Reporte de datos (Salida)
         System.out.println("            ********************************* LISTADO ************************************");
-        while(i <= x){
-            System.out.println(array[i].toString());
+        while(i < x){
+            System.out.println(array[i]);
             i ++;
         }
     }
