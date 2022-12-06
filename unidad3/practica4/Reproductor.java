@@ -26,11 +26,16 @@ public class Reproductor {
             Cancion cancio2 = new Cancion(5.43, "Adentro", "Mariachi");
             Cancion cancio3 = new Cancion(5.44, "Afuera", "Sierrenio");
             Cancion cancio4 = new Cancion(5.45, "Atras", "Banda");
-
+            Cancion cancio5 = new Cancion(5.45, "Zembra", "Banda");
+            Cancion cancio6 = new Cancion(5.45, "Jiji", "Banda");
+            Cancion cancio7 = new Cancion(5.45, "Zuku", "Banda");
+            lista.agregar(cancio6);
             lista.agregar(cancio4);
             lista.agregar(cancio3);
             lista.agregar(cancio2);
             lista.agregar(cancio1);
+            lista.agregar(cancio5);
+            lista.agregar(cancio7);
             int option;
             do {
                 System.out.print("""
@@ -95,7 +100,7 @@ public class Reproductor {
                     } else {
                         System.out.print("Nombre cancion >> ");
                         nombre = consola.next();
-                        indice = lista.where(nombre);
+                        indice = lista.where(nombre,2);
                         if(indice >= 0){
                             lista.buscar(indice);
                         }else{
@@ -128,6 +133,7 @@ public class Reproductor {
                 case 1 -> {
                     System.out.print("Nombre >> ");
                     nombre = consola.next();
+                    
                     System.out.print("Tiempo reproduccion >> ");
                     tiempo = consola.nextDouble();
                     System.out.print("Genero >> ");
@@ -169,11 +175,31 @@ public class Reproductor {
                     if (lista.estado()) {
                         System.out.println("No hay canciones que reproducir");
                     } else {
-                        lista.verLista();
+                        menuVerLista();
                     }
                 }
                 default -> System.out.println("La opcion indicada no fue encontrada");
             }
         } while (option2 != 6);
+    }
+    
+    protected static void menuVerLista(){
+        do{
+            System.out.println("      \n\n\n       Lista\n");
+            System.out.print("""
+                             1.-Ver lista original
+                             2.-Ver lista Orden Alfabetico
+                             3.-Ver lista Orden inverso Alfabetico
+                             4.-Regresar
+                                 Opcion >> """);
+            option2 = consola.nextInt();
+            switch (option2) {
+            case 1 -> lista.verLista();
+            case 2 -> lista.ordenCanciones(option2);
+            case 3 -> lista.ordenCanciones(option2);
+            case 4 -> System.out.println("Regresando");
+            default -> System.out.println("Opcion no encontrada");
+            }
+        }while(option2 != 4);
     }
 }

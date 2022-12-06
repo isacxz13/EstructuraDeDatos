@@ -19,11 +19,10 @@ public class Cancion {
     public double getTiempo() {
         return tiempo;
     }
-
     public void setTiempo(double tiempo) {
         this.tiempo = tiempo;
     }
-
+    
     public String getNombre() {
         return nombre;
     }

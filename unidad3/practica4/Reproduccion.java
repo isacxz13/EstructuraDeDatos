@@ -31,8 +31,11 @@ public interface Reproduccion {
     public boolean estado();
     
     //Regresa indice del objeto
-    public int where(String name);
+    public int where(String name, int option);
     
     //Buscar cancion
     public void buscar(int indice);
+    
+    //Ordena canciones en orden alfabetico
+    public void ordenCanciones(int option);
 }
