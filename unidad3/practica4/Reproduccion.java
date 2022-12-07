@@ -11,7 +11,7 @@ public interface Reproduccion {
     public boolean agregar(Cancion cancion);
     
     //Eliminar canciones
-    public Cancion eliminar(String x);
+    public boolean eliminar(String x);
         
     //Limpiar lista completa
     public void eliminarAll();

@@ -27,8 +27,8 @@ public class Reproductor {
             Cancion cancio3 = new Cancion(5.44, "Afuera", "Sierrenio");
             Cancion cancio4 = new Cancion(5.45, "Atras", "Banda");
             Cancion cancio5 = new Cancion(5.45, "Zembra", "Banda");
-            Cancion cancio6 = new Cancion(5.45, "Jiji", "Banda");
-            Cancion cancio7 = new Cancion(5.45, "Zuku", "Banda");
+            Cancion cancio6 = new Cancion(5.45, "Jiji", "Pop");
+            Cancion cancio7 = new Cancion(5.45, "Zuku", "Rap");
             lista.agregar(cancio6);
             lista.agregar(cancio4);
             lista.agregar(cancio3);
@@ -36,6 +36,7 @@ public class Reproductor {
             lista.agregar(cancio1);
             lista.agregar(cancio5);
             lista.agregar(cancio7);
+            
             int option;
             do {
                 System.out.print("""
@@ -45,7 +46,8 @@ public class Reproductor {
                                  2.-Lista de reproduccion
                                  3.-Salir
                                      Opcion >> """);
-                option = consola.nextInt();
+                String str = consola.next();
+                option = convertionInt(str);
                 switch (option) {
                     case 1 ->
                         reproductor();
@@ -57,7 +59,7 @@ public class Reproductor {
                         System.out.println("La opcion indicada no fue encontrada");
                 }
             } while (option != 3);
-        } catch (InputMismatchException e) {
+        }catch (InputMismatchException e) {
             System.out.println("Entrada de datos incorrectos");
         }catch(NoSuchElementException e){
             System.out.println("La lista está vacía");
@@ -78,7 +80,8 @@ public class Reproductor {
                              3.-Reproducir cancion
                              4.-Regresar
                                  Opcion >> """);
-            option2 = consola.nextInt();
+            String str = consola.next();
+            option2 = convertionInt(str);
             switch (option2) {
                 case 1 -> {
                     if (lista.estado()) {
@@ -128,14 +131,16 @@ public class Reproductor {
                              6.-Regresar
                              
                                  Opcion >> """);
-            option2 = consola.nextInt();
+            String str = consola.next();
+            option2 = convertionInt(str);
             switch (option2) {
                 case 1 -> {
                     System.out.print("Nombre >> ");
                     nombre = consola.next();
                     
                     System.out.print("Tiempo reproduccion >> ");
-                    tiempo = consola.nextDouble();
+                    String str2 = consola.next();
+                    tiempo = convertirDouble(str);
                     System.out.print("Genero >> ");
                     genero = consola.next();
                     newCancion = new Cancion(tiempo, nombre, genero);
@@ -151,7 +156,11 @@ public class Reproductor {
                     if (lista.estado()) {
                         System.out.println("No hay canciones para eliminar");
                     } else {
-                        System.out.println("Cancion eliminada [ " + lista.eliminar(indice2) + " ]");
+                        if(lista.eliminar(indice2)){
+                            System.out.println("Cancion eliminada [ " + indice2 + " ]");
+                        }else{
+                            System.out.println("Cancion no encontrada en la lista");
+                        }
                     }
                 }
                 case 3 -> {
@@ -183,19 +192,40 @@ public class Reproductor {
         do{
             System.out.println("      \n\n\n       Lista\n");
             System.out.print("""
-                             1.-Ver lista original
-                             2.-Ver lista Orden Alfabetico
-                             3.-Ver lista Orden inverso Alfabetico
-                             4.-Regresar
-                                 Opcion >> """);
-            option2 = consola.nextInt();
+                         1.-Ver lista original
+                         2.-Ver lista Orden Alfabetico
+                         3.-Ver lista Orden inverso Alfabetico
+                         4.-Regresar
+                             Opcion >> """);
+            String str = consola.next();
+            option2 = convertionInt(str);
             switch (option2) {
-            case 1 -> lista.verLista();
-            case 2 -> lista.ordenCanciones(option2);
-            case 3 -> lista.ordenCanciones(option2);
-            case 4 -> System.out.println("Regresando");
-            default -> System.out.println("Opcion no encontrada");
+                case 1 -> lista.verLista();
+                case 2 -> lista.ordenCanciones(option2);
+                case 3 -> lista.ordenCanciones(option2);
+                case 4 -> System.out.println("Regresando");
+                default -> System.out.println("Opcion no encontrada");
             }
         }while(option2 != 4);
+    }
+    
+    private static int convertionInt(String str){
+        boolean isNumeric = str.matches("[+-]?\\d*(\\.\\d+)?");
+        if(isNumeric){
+            double date1  = Double.parseDouble(str);
+            int entero = (int)date1;
+            return entero;
+        }else{
+            return -1;
+        }
+    }
+    private static double convertirDouble(String str){
+        boolean isNumeric = str.matches("[+-]?\\d*(\\.\\d+)?");
+        if(isNumeric){
+            double date1  = Double.parseDouble(str);
+            return date1;
+        }else{
+            return -1;
+        }
     }
 }

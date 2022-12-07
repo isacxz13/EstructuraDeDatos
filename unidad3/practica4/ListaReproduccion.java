@@ -27,9 +27,14 @@ public class ListaReproduccion implements Reproduccion {
     }
 
     @Override
-    public Cancion eliminar(String x) {
-        this.canciones2.remove(where(x, 1));
-        return this.canciones.remove(where(x, 2));
+    public boolean eliminar(String x) {
+        if(where(x, 1) < 0){
+            return false;
+        }else{
+            this.canciones2.remove(where(x, 1));
+            this.canciones.remove(where(x, 1));
+            return true;
+        }
     }
 
     @Override
