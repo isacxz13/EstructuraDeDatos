@@ -1,7 +1,6 @@
 package unidad3.practica4;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -16,22 +15,26 @@ public class ListaReproduccion implements Reproduccion {
 
     public ListaReproduccion() {
         this.canciones = new LinkedList();
+        this.canciones2 = new LinkedList();
     }
 
     @Override
     public boolean agregar(Cancion cancion) {
         String nombre = cancion.getNombre().toUpperCase().charAt(0) + cancion.getNombre().substring(1, cancion.getNombre().length()).toLowerCase();
         cancion.setNombre(nombre);
+        this.canciones2.add(cancion);
         return this.canciones.add(cancion);
     }
 
     @Override
-    public Cancion eliminar(int x) {
-        return this.canciones.remove(x);
+    public Cancion eliminar(String x) {
+        this.canciones2.remove(where(x, 1));
+        return this.canciones.remove(where(x, 2));
     }
 
     @Override
     public void eliminarAll() {
+        this.canciones2.clear();
         this.canciones.clear();
     }
 
@@ -51,7 +54,7 @@ public class ListaReproduccion implements Reproduccion {
     @Override
     public void verLista() {
         int i = 0;
-        for (Cancion cancion : this.canciones) {
+        for (Cancion cancion : this.canciones2) {
             System.out.println("ID = " + (i++) + " " + cancion);
         }
     }

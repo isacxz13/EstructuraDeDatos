@@ -146,16 +146,12 @@ public class Reproductor {
                     }
                 }
                 case 2 -> {
-                    System.out.print("Indice >> ");
-                    indice = consola.nextInt();
+                    System.out.print("Nombre >> ");
+                    String indice2 = consola.next();
                     if (lista.estado()) {
                         System.out.println("No hay canciones para eliminar");
                     } else {
-                        if (indice > lista.contar() || indice < 0) {
-                            System.out.println("El indice marcado no existe");
-                        } else {
-                            System.out.println("Cancion eliminada [ " + lista.eliminar(indice) + " ]");
-                        }
+                        System.out.println("Cancion eliminada [ " + lista.eliminar(indice2) + " ]");
                     }
                 }
                 case 3 -> {
