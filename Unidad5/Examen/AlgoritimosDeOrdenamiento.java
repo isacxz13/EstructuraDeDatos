@@ -8,13 +8,12 @@ import java.util.Arrays;
  */
 public class AlgoritimosDeOrdenamiento {
 
-    private int i, j, temporal, k;
+    private int i, j, k;
     private long intercambios, cuenta;
 
     public AlgoritimosDeOrdenamiento() {
         this.i = 0;
         this.j = 0;
-        this.temporal = 0;
         this.intercambios = 0;
         this.cuenta = 0;
     }
@@ -75,6 +74,7 @@ public class AlgoritimosDeOrdenamiento {
                 auxiliar[i] = arreglo[i - j];
                 intercambios ++;
             }
+            cuenta ++;
             arreglo = auxiliar;
         }
         return arreglo;
@@ -111,12 +111,15 @@ public class AlgoritimosDeOrdenamiento {
                 continue;
             }
             if (izq[i] < der[j]) {
+                intercambios ++;
                 v[k] = izq[i];
                 i++;
             } else {
+                intercambios ++;
                 v[k] = der[j];
                 j++;
             }
+            cuenta ++;
         }
     }
 

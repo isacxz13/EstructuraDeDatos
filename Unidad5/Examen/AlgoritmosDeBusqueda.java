@@ -6,8 +6,9 @@ package Unidad5.Examen;
  */
 public class AlgoritmosDeBusqueda {
     private AlgoritimosDeOrdenamiento metodo = new AlgoritimosDeOrdenamiento();
+    
+    //Busqueda Binaria
     public int binaria(int[] arreglo, int valorABuscar) {
-        metodo.shell(arreglo);
         int minimo = 0;
         int maximo = arreglo.length - 1;
         int posicionValor = 0;
@@ -23,7 +24,8 @@ public class AlgoritmosDeBusqueda {
         }
         return -1;
     }
-
+    
+    //Busqueda secuencial
     public int secuencial(int[] v, int dato) {
         int posicion = -1;
         for (int i = 0; i < v.length; i++) {
@@ -34,5 +36,4 @@ public class AlgoritmosDeBusqueda {
         }
         return posicion;
     }
-    
 }

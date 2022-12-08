@@ -140,7 +140,7 @@ public class Reproductor {
                     
                     System.out.print("Tiempo reproduccion >> ");
                     String str2 = consola.next();
-                    tiempo = convertirDouble(str);
+                    tiempo = convertirDouble(str2);
                     System.out.print("Genero >> ");
                     genero = consola.next();
                     newCancion = new Cancion(tiempo, nombre, genero);
