@@ -28,11 +28,11 @@ public class ListaReproduccion implements Reproduccion {
 
     @Override
     public boolean eliminar(String x) {
-        if(where(x, 1) < 0){
+        if(where(canciones,x, 1) < 0){
             return false;
         }else{
-            this.canciones2.remove(where(x, 1));
-            this.canciones.remove(where(x, 1));
+            this.canciones2.remove(where(canciones2,x, 1));
+            this.canciones.remove(where(canciones,x, 1));
             return true;
         }
     }
@@ -101,18 +101,22 @@ public class ListaReproduccion implements Reproduccion {
     }
 
     //Busqueda Secuancial
-    @Override
-    public int where(String name, int option) {
+    private int where(LinkedList<Cancion> lista, String name, int option) {
         if(option == 1){
-            return busquedaSecuencial(name);
+            return busquedaSecuencial(lista,name);
         }else{
             return busquedaBinaria(name);
         }
     }
     @Override
-    public void buscar(int indice) {
-        System.out.println("Reproduciendo: " + canciones.get(indice));
-        esperar(3);
+    public void buscar(String dato,int option) {
+        int indice = where(canciones, dato, 2);
+        if(indice >= 0){
+            System.out.println("Reproduciendo: " + canciones.get(indice));
+            esperar(3);
+        }else{
+            System.out.println("Cancion no encontrada");
+        }
     }
 
     //Imprime las canciones en orden Alfabetico o inverso ya ordenadas
@@ -175,10 +179,10 @@ public class ListaReproduccion implements Reproduccion {
         return -1;
     }
     
-    private int busquedaSecuencial(String name){
+    private int busquedaSecuencial(LinkedList<Cancion> lista, String name){
         int x=0;
         boolean flag=false;
-        for(Cancion cancion: this.canciones){
+        for(Cancion cancion: lista){
             if(name.equalsIgnoreCase(cancion.getNombre())){
                 flag = true;
                 break;

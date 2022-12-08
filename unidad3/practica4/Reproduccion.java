@@ -1,5 +1,7 @@
 package unidad3.practica4;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author xztrece
@@ -30,11 +32,8 @@ public interface Reproduccion {
     //Revisar estado de la lista
     public boolean estado();
     
-    //Regresa indice del objeto
-    public int where(String name, int option);
-    
     //Buscar cancion
-    public void buscar(int indice);
+    public void buscar(String dato,int option);
     
     //Ordena canciones en orden alfabetico
     public void ordenCanciones(int option);

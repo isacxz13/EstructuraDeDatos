@@ -103,12 +103,7 @@ public class Reproductor {
                     } else {
                         System.out.print("Nombre cancion >> ");
                         nombre = consola.next();
-                        indice = lista.where(nombre,2);
-                        if(indice >= 0){
-                            lista.buscar(indice);
-                        }else{
-                            System.out.println("La cancion no se encuentra en la lista");
-                        }
+                        lista.buscar(nombre, 1);
                     }
                 }
                 case 4 -> {
