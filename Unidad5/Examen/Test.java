@@ -61,7 +61,7 @@ public class Test {
             System.out.println("|  " + dataOrigy[i] + "  |   " + data[i] + "   |   " + data2[i] + "   |   " + data3[i] + "   | ");
         }
         System.out.println("\n\n\n");
-        int dato = dataOrigy[range/3];
+        int dato = data[range/3];
         System.out.println("Dato buscando: [ "+ dato +" ]");
         
         //Busqueda Binaria

@@ -5,26 +5,32 @@ package Unidad5.Examen;
  * @author xztrece
  */
 public class AlgoritmosDeBusqueda {
+
     private AlgoritimosDeOrdenamiento metodo = new AlgoritimosDeOrdenamiento();
-    
+
     //Busqueda Binaria
-    public int binaria(int[] arreglo, int valorABuscar) {
-        int minimo = 0;
-        int maximo = arreglo.length - 1;
-        int posicionValor = 0;
-        while (maximo >= minimo) {
-            posicionValor = (int) Math.floor((maximo + minimo) / 2);
-            if (arreglo[posicionValor] == valorABuscar) {
-                return posicionValor;
-            } else if (arreglo[posicionValor] > valorABuscar) {
-                maximo = posicionValor - 1;
+    public static int binaria(int vector[], int clave) {
+        int centro, linferior, lsuperior;
+        int valorcentral;
+
+        linferior = 0;
+        lsuperior = vector.length - 1;
+        while (linferior <= lsuperior) {
+            centro = (linferior + lsuperior) / 2;
+            valorcentral = vector[centro];
+            if (clave == valorcentral) {
+                return centro;
             } else {
-                minimo = posicionValor + 1;
+                if (clave < valorcentral) {
+                    lsuperior = centro - 1;
+                } else {
+                    linferior = centro + 1;
+                }
             }
         }
         return -1;
     }
-    
+
     //Busqueda secuencial
     public int secuencial(int[] v, int dato) {
         int posicion = -1;
